@@ -1,0 +1,73 @@
+= Azkaban Uber Docker
+
+== How to run it ?
+
+=== The command
+
+All you need is :
+
+----
+docker run \
+  -d \
+  --name azkaban-web-server \
+  -p 8081:8081 \
+  -v /your/mysql-data:/home/azkaban/mysql-data \
+  -v /your/public-conf:/home/azkaban/public-conf \
+  -v /your/logs:/home/azkaban/logs \
+  -v /your/projects:/home/azkaban/projects \
+  azkaban-web-server
+----
+
+=== The options
+
+Here are the different settings you can tune though environment variables (option -e as above in the command :
+
+    * `-e AZKABAN_NAME` : The name of your Azkaban. It will appear in the header of the page.
+    * `-e AZKABAN_LABEL` : The subtitle of your Azkaban. It will appear in the header of the page.
+    * `-e TIMEZONE` : The time zone. Defaults to "Europe/Paris".
+
+=== The data
+
+All data regarding the life of the instance can be persisted outside the container by using the volumes :
+
+    * `-v /your/mysql-data:/home/azkaban/mysql-data`
+    * `-v /your/public-conf:/home/azkaban/public-conf`
+    * `-v /your/logs:/home/azkaban/logs`
+    * `-v /your/projects:/home/azkaban/projects`
+
+=== The emails
+
+To allow Azkaban to send emails, add the following options to the `docker run` command :
+
+ * `-e EMAIL_ENABLED` : defaults to `False`. Activates Azkaban emails. Other possible value is `True`.
+ * `-e EMAIL_SENDER` : defaults to `noreply@example.com`. The sender email address.
+ * `-e EMAIL_HOST` : defaults to `localhost`. The SMTP host.
+ * `-e EMAIL_PORT` : defaults to `25`. The SMTP port.
+ * `-e EMAIL_HOST_USER`. The user to use with the SMTP server if you use TLS.
+ * `-e EMAIL_HOST_PASSWORD`. The password to use with the SMTP server if you use TLS.
+
+
+== How to build the image ?
+
+To build the image, run the following command in this very directoy :
+
+----
+docker build --tag taiga azkaban-web-server
+----
+
+
+
+
+
+
+
+
+docker run \
+  -d \
+  --name azkaban-web-server \
+  -p 8081:8081 \
+  -v ~/Projects/azkaban-uber-docker/mysql-data:/home/azkaban/mysql-data \
+  -v ~/Projects/azkaban-uber-docker/public-conf:/home/azkaban/public-conf \
+  -v ~/Projects/azkaban-uber-docker/logs:/home/azkaban/logs \
+  -v ~/Projects/azkaban-uber-docker/projects:/home/azkaban/projects \
+  azkaban-web-server
