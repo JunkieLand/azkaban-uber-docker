@@ -6,10 +6,19 @@ MYSQL_DATA_DIR="/home/azkaban/mysql-data"
 MYSQL_ROOT_PASSWORD="MysqlRootPwd"
 
 LOG_DIR=$HOME/logs
-AZKABAN_SERVER_CONF_DIR=$HOME/azkaban-web-server/conf
-AZKABAN_SERVER_PLUGINS_DIR=$HOME/azkaban-web-server/plugins
-AZKABAN_SERVER_EXTLIB_DIR=$HOME/azkaban-web-server/extlib
-AZKABAN_SERVER_PUBLIC_CONF_DIR=$HOME/public-conf
-AZKABAN_SERVER_INSTALL_DIR=$HOME/azkaban-web-server
+AZKABAN_WEBSERVER_CONF_DIR=$HOME/azkaban-web-server/conf
+AZKABAN_WEBSERVER_PLUGINS_DIR=$HOME/azkaban-web-server/plugins
+AZKABAN_WEBSERVER_EXTLIB_DIR=$HOME/azkaban-web-server/extlib
+AZKABAN_WEBSERVER_PUBLIC_CONF_DIR=$HOME/public-conf
+AZKABAN_WEBSERVER_INSTALL_DIR=$HOME/azkaban-web-server
+AZKABAN_WEBSERVER_JOBTYPE_DIR=$AZKABAN_WEBSERVER_PLUGINS_DIR/jobtypes
+
+AZKABAN_EXECSERVER_CONF_DIR=$HOME/azkaban-exec-server/conf
+AZKABAN_EXECSERVER_PLUGINS_DIR=$HOME/azkaban-exec-server/plugins
+AZKABAN_EXECSERVER_EXTLIB_DIR=$HOME/azkaban-exec-server/extlib
+AZKABAN_EXECSERVER_INSTALL_DIR=$HOME/azkaban-exec-server
+AZKABAN_EXEC_EXECUTION_DIR=$HOME/azkaban-exec-server/executions
+AZKABAN_EXECSERVER_JOBTYPE_DIR=$AZKABAN_EXECSERVER_PLUGINS_DIR/jobtypes
 
 AZKABAN_PROJECT_DIR="/home/azkaban/projects"
+AZKABAN_EXECPROJECT_DIR="/home/azkaban/projects-exec"

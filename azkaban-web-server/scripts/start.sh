@@ -61,23 +61,38 @@ mysql -uroot -p${MYSQL_ROOT_PASSWORD} $MYSQL_DB < /usr/bin/create-all-sql-3.30.0
 
 logTitle "AZKABAN WEB SERVER"
 
-log "Will generate azkaban.properties file..."
+log "Will generate azkaban.properties file for Azkaban Web Server..."
 
-/usr/bin/azkaban.properties.sh
+/usr/bin/azkaban-web-server.properties.sh
 
-if [ -f $AZKABAN_SERVER_PUBLIC_CONF_DIR/azkaban-users.xml ]; then
+if [ -f $AZKABAN_WEBSERVER_PUBLIC_CONF_DIR/azkaban-users.xml ]; then
   log "Copy azkaban-users.xml file in conf directory since it exists..."
-  cp $AZKABAN_SERVER_PUBLIC_CONF_DIR/azkaban-users.xml $AZKABAN_SERVER_CONF_DIR/
+  cp $AZKABAN_WEBSERVER_PUBLIC_CONF_DIR/azkaban-users.xml $AZKABAN_WEBSERVER_CONF_DIR/
 else
   log "No azkaban-users.xml file found"
 fi
 
+
+logTitle "AZKABAN EXECUTOR SERVER"
+
+log "Will generate azkaban.properties file for Azkaban Executor Server..."
+
+/usr/bin/azkaban-exec-server.properties.sh
+
+
+logTitle "START"
+
+log "Will start Azkaban Executor Server..."
+
+cd $AZKABAN_EXECSERVER_INSTALL_DIR
+./bin/azkaban-executor-start.sh
+
 log "Will start Azkaban Web Server..."
 
-cd $AZKABAN_SERVER_INSTALL_DIR
+cd $AZKABAN_WEBSERVER_INSTALL_DIR
 ./bin/azkaban-web-start.sh
 
-PID=$(cat $AZKABAN_SERVER_INSTALL_DIR/currentpid)
+PID=$(cat $AZKABAN_WEBSERVER_INSTALL_DIR/currentpid)
 while [ -e /proc/$PID ]
 do
     sleep 10

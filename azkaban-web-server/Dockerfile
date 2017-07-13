@@ -22,20 +22,27 @@ USER azkaban
 WORKDIR /home/azkaban
 
 COPY lib/azkaban-web-server-3.30.0.tar.gz /tmp/
+COPY lib/azkaban-exec-server-3.30.0.tar.gz /tmp/
 COPY lib/mysql-connector-java-5.1.42-bin.jar /tmp/
 COPY scripts/env.sh /usr/bin/
 COPY scripts/install.sh /tmp/
 COPY scripts/start.sh /usr/bin/
 COPY conf/my.cnf.sh /tmp/
 COPY conf/create-all-sql-3.30.0.sql /usr/bin/
-COPY conf/azkaban.properties.sh /usr/bin/
-COPY conf/global.properties.sh /tmp/
+COPY conf/azkaban-web-server.properties.sh /usr/bin/
+COPY conf/global-web-server.properties.sh /tmp/
 COPY conf/azkaban-users.xml /tmp/
-COPY conf/log4j.properties /tmp/
+COPY conf/log4j-web-server.properties /tmp/
+COPY conf/commonprivate-web-server.properties /tmp/
+COPY conf/azkaban-exec-server.properties.sh /usr/bin/
+COPY conf/global-exec-server.properties.sh /tmp/
+COPY conf/log4j-exec-server.properties /tmp/
+COPY conf/commonprivate-exec-server.properties /tmp/
+
 
 RUN /tmp/install.sh
 
-EXPOSE 3306 8081
+EXPOSE 8081
 
 VOLUME ["/home/azkaban/mysql-data", "/home/azkaban/projects", "/home/azkaban/public-conf", "/home/azkaban/logs"]
 
