@@ -41,7 +41,7 @@ logTitle "AZKABAN WEB SERVER"
 
 log "Create Azkaban Web Server project directory..."
 
-mkdir -p $AZKABAN_EXECPROJECT_DIR
+mkdir -p $AZKABAN_PROJECT_DIR
 
 log "Unarchive Azkaban Web Server package..."
 
