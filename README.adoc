@@ -49,10 +49,32 @@ To allow Azkaban to send emails, add the following options to the `docker run` c
 
 == How to build the image ?
 
-To build the image, run the following command in this very directoy :
+=== Building Azkaban
+
+Before building this Docker image, you first need to build the Azkaban project.
+
+Clone the Git project from Github :
 
 ----
-docker build --tag taiga azkaban-web-server
+git clone git@github.com:azkaban/azkaban.git
+----
+
+Build it :
+
+----
+cd azkaban
+./gradlew clean build
+----
+
+=== Building the Docker image
+
+You now need to move the generated `.tar.gz` archives to the `lib` directory of the `azkaban-uber-docker` project.
+You can use the script `moveServerArchives.sh` to handle it for you.
+
+At last, you may build the image ! Just run the following command in this very directoy :
+
+----
+docker build --rm --tag azkaban-web-server .
 ----
 
 
